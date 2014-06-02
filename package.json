@@ -19,9 +19,16 @@
 	"scripts": {
 		"test": "grunt test"
 	},
+	"dependencies": {
+		"tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git",
+		"tapestry-exodus": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-exodus.git"
+	},
 	"devDependencies": {
 		"grunt": "~0.4.3",
 		"grunt-contrib-jshint": "~0.8.0",
-		"grunt-jscs-checker": "~0.4.0"
+		"grunt-jscs-checker": "~0.4.0",
+		"mocha": "~1.19.0",
+		"grunt-mocha-test": "~0.10.2",
+		"q": "~1.0.1"
 	}
 }
