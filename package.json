@@ -1,28 +1,29 @@
 {
-	"name": "helper-tapestry",
-	"description": "A simple helper to interface Tapestry",
-	"version": "0.0.1",
-	"homepage": "https://bitbucket.org/hxshortbreaks/helper-tapestry",
-	"author": {
-		"name": "Shortbreaks",
-		"email": "shortbreaksdev@holidayextras.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git@bitbucket.org:hxshortbreaks/helper-tapestry.git"
-	},
-	"license": "MIT",
-	"main": "index",
-	"engines": {
-		"node": ">= 0.10.0"
-	},
-	"dependencies": {
-		"tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git",
-		"tapestry-exodus": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-exodus.git"
-	},
-	"devDependencies": {
-		"grunt": "~0.4.3",
-		"grunt-contrib-jshint": "~0.8.0",
-		"grunt-jscs-checker": "~0.4.0"
-	}
+  "name": "helper-tapestry",
+  "description": "A simple helper to interface Tapestry",
+  "version": "0.0.1",
+  "homepage": "https://bitbucket.org/hxshortbreaks/helper-tapestry",
+  "author": {
+    "name": "Shortbreaks",
+    "email": "shortbreaksdev@holidayextras.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:hxshortbreaks/helper-tapestry.git"
+  },
+  "license": "MIT",
+  "main": "index",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git",
+    "tapestry-exodus": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-exodus.git",
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.3",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-jscs-checker": "~0.4.0"
+  }
 }
