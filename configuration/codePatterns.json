@@ -1,0 +1,16 @@
+[
+	{
+		"fieldName": "code",
+		"length": 6
+	},
+	[
+		{
+			"fieldName": "location",
+			"length": 3
+		},
+		{
+			"fieldName": "code",
+			"length": 3
+		}
+	]
+]
