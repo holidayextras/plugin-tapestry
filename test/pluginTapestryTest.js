@@ -15,6 +15,7 @@ var Hapi = require( 'hapi' );
 // We're gonna need Q for the promises checking
 var Q = require( 'q' );
 var sinon = require( 'sinon' );
+var Tapestry = require( 'tapestry' );
 
 // when the wrong case is fired by a deferred
 var successFiredIncorrectlyMessage = 'Deferred resolved incorrectly';
@@ -46,24 +47,33 @@ describe( 'pluginTapestry', function() {
 			assert.strictEqual( 'object', typeof server.plugins['plugin-tapestry'] );
 			done();
 		} );
-
 	} );
 
 	describe( '.makeItSo()', function() {
 
 		it( 'should expose makeItSo as a function', function( done ) {
+			var deferred = Q.defer();
 			assert.equal( typeof server.plugins['plugin-tapestry'].makeItSo, 'function' );
 			done();
 		} );
 
-		// it( 'should fail when the options parameter is not passed', function() {
-		// 	var deferred = Q.defer();
-		// 	return server.plugins['plugin-http'].makeItSo( deferred ).then( function( result ) {
-		// 		assert.fail( result, null, successFiredIncorrectlyMessage );
-		// 	}, function( error ) {
-		// 		assert.equal( error, 'invalid options' );
-		// 	} );
-		// } );
+		it( 'should assing the fixture to the requested input `code`', function() {
+			var deferred = Q.defer();
+
+			var tapestry = server.plugins['plugin-tapestry'].get();
+
+			var tapestryGetStub = sinon.stub( tapestry, 'get' ).callsArgWith( 1, null, { "name": "Test Hotel" } );
+
+			return server.plugins['plugin-tapestry'].makeItSo( deferred, {
+			 "inputData": {
+			 		"code": "ABC123"
+			 	}
+			} ).then( function( result ) {
+				assert.deepEqual( result, { "code": "ABC123", content: { "name": "Test Hotel" } } );
+			}, function( error ) {
+
+			} );
+		} );
 
 	} );
 
