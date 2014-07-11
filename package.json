@@ -24,7 +24,11 @@
   },
   "devDependencies": {
     "grunt": "~0.4.3",
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-jscs-checker": "~0.4.0"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-jscs-checker": "~0.4.0",
+    "grunt-mocha-test": "~0.10.2",
+    "hapi": "6.0.2",
+    "mocha": "~1.19.0",
+    "sinon": "1.10.3"
   }
 }
