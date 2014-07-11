@@ -8,4 +8,4 @@
 * @author Rob Johnson <rob.johnson@holidayextras.com>
 */
 
-module.exports = require( './lib/helperTapestry.js' );
+module.exports = require( './lib/pluginTapestry.js' );

@@ -1,15 +1,15 @@
 {
-  "name": "helper-tapestry",
+  "name": "plugin-tapestry",
   "description": "A simple helper to interface Tapestry",
   "version": "0.0.1",
-  "homepage": "https://bitbucket.org/hxshortbreaks/helper-tapestry",
+  "homepage": "https://bitbucket.org/hxshortbreaks/plugin-tapestry",
   "author": {
     "name": "Shortbreaks",
     "email": "shortbreaksdev@holidayextras.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:hxshortbreaks/helper-tapestry.git"
+    "url": "git@bitbucket.org:hxshortbreaks/plugin-tapestry.git"
   },
   "license": "MIT",
   "main": "index",

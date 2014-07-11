@@ -1,10 +1,10 @@
-# helper-tapestry
+# plugin-tapestry
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## About
 
-A simple helper to interface Tapestry
+A hapijs plugin to interface Tapestry
 
 ## Getting Started
 
