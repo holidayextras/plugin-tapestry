@@ -3,9 +3,9 @@
 
 /*
 * @name /index.js
-* @description Node style library inclusion
-* @since Mon Jun 02 2014
-* @author Rob Johnson <rob.johnson@holidayextras.com>
+* @description Where's our library?
+* @since Fri Jul 11 2014
+* @author Kevin Hodges <kevin.hodges@holidayextras.com>
 */
 
 module.exports = require( './lib/pluginTapestry.js' );
