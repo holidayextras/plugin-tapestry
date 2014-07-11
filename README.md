@@ -4,13 +4,47 @@
 
 ## About
 
-A hapijs plugin to interface Tapestry
+A HAPI style plugin to interface Tapestry
 
 ## Getting Started
 
-If you want to work on this repo you will need to install the dependencies
+You can start with cloneing down the repo
+
+```
+git clone git@bitbucket.org:hxshortbreaks/plugin-tapestry.git
+```
+
+or to install this plugin to your Hapi server you will need to add this line to your dependencies in your package.json
+```
+"plugin-tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/plugin-tapestry.git"
+```
+
+After you will need to install this dependency and its dependencies
 ```
 $ npm install
+```
+
+### Implementation
+
+This plugin conforms to the [hapijs plugin interface](http://hapijs.com/api#plugin-interface).
+
+While bootstrapping your Hapi server, include the plugin like so:
+
+```
+server.pack.register( [
+	require( 'plugin-tapestry' )
+], function() {
+	server.start( function() {
+		console.log( 'server started with plugin-tapestry plugin initialised' );
+	} );
+} );
+```
+
+Inside your controllers you should then be able to do something like this:
+
+```
+var tapestryRequestDeferred = Q.defer();
+request.server.plugins['plugin-tapestry'].makeItSo( tapestryRequestDeferred, options );
 ```
 
 #### EditorConfig
@@ -28,6 +62,13 @@ Visit our [bitbucket](https://bitbucket.org/hxshortbreaks/) website for all the 
 Code is linted by ".jshintrc" and checked against the coding style guide "shortbreaks.jscs.json" when you run the default grunt task:
 ```
 $ grunt
+```
+
+## Tests
+
+Tests will run using the default grunt task but can also be called stand-alone using:
+```
+$ grunt test
 ```
 
 ## License
