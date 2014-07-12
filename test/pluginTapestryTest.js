@@ -44,7 +44,7 @@ describe( 'pluginTapestry', function() {
 
 	describe( '.register()', function() {
 		it( 'should allow us to access the plugin off the hapi server', function( done ) {
-			assert.strictEqual( 'object', typeof server.plugins['plugin-tapestry'] );
+			assert.notStrictEqual( undefined, server.plugins['plugin-tapestry'] );
 			done();
 		} );
 	} );
@@ -57,7 +57,7 @@ describe( 'pluginTapestry', function() {
 			done();
 		} );
 
-		it( 'should assing the fixture to the requested input `code`', function() {
+		it( 'should assign the fixture to the requested input `code`', function() {
 			var deferred = Q.defer();
 
 			var tapestry = server.plugins['plugin-tapestry'].get();
