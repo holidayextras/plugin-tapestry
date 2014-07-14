@@ -16,6 +16,7 @@ var Hapi = require( 'hapi' );
 var Q = require( 'q' );
 var sinon = require( 'sinon' );
 var Tapestry = require( 'tapestry' );
+var _ = require( 'lodash' );
 
 // when the wrong case is fired by a deferred
 var successFiredIncorrectlyMessage = 'Deferred resolved incorrectly';
@@ -88,13 +89,36 @@ describe( 'pluginTapestry', function() {
 
 			before( function () {
 				// make tapestry.get return the values we can test against
-				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, require( './fixtures/ABC123Content' ) );
+				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, _.cloneDeep( require( './fixtures/ABC123Content' ) ) );
 			} );
 
-			it( 'should bind the expected content to the requested fixture (input `code`)', function() {
+			it( 'should bind the expected content to the requested fixture input `code`', function() {
 				var deferred = Q.defer();
-				var expected = require( './expected/ABC123Result' );
-				return server.plugins['plugin-tapestry'].makeItSo( deferred, require( './fixtures/ABC123Key' ) ).then( function( result ) {
+				var expected = _.cloneDeep( require( './expected/ABC123Result' ) );
+				return server.plugins['plugin-tapestry'].makeItSo( deferred, _.cloneDeep( require( './fixtures/ABC123Key' ) ) ).then( function( result ) {
+					assert.deepEqual( result, expected );
+				}, function( error ) {
+					assert.fail( error, expected );
+				} );
+			} );
+
+			after( function() {
+				tapestryMethodStub.restore();
+			} );
+
+		} );
+
+		describe( 'end to end to check the result gets handled correctly from the call to tapestry.get when no content is found', function() {
+
+			before( function () {
+				// make tapestry.get return the values we can test against
+				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, _.cloneDeep( require( './fixtures/noResult' ) ) );
+			} );
+
+			it( 'should not add a `code` property', function() {
+				var deferred = Q.defer();
+				var expected = _.cloneDeep( require( './expected/ABC123NoResult' ) );
+				return server.plugins['plugin-tapestry'].makeItSo( deferred, _.cloneDeep( require( './fixtures/ABC123Key' ) ) ).then( function( result ) {
 					assert.deepEqual( result, expected );
 				}, function( error ) {
 					assert.fail( error, expected );
