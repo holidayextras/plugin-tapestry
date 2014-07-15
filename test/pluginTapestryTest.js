@@ -23,8 +23,13 @@ var successFiredIncorrectlyMessage = 'Deferred resolved incorrectly';
 
 // where is out plugin?
 var pluginLocation = '../lib/pluginTapestry';
-var pluginName = 'configuration';
+var pluginName = 'plugin-tapestry';
 var server, tapestryMethodStub;
+
+// allow resources to be required safely
+function loadTestResource( resource ) {
+	return _.cloneDeep( require( resource ) );
+}
 
 describe( 'pluginTapestry', function() {
 
@@ -45,7 +50,7 @@ describe( 'pluginTapestry', function() {
 
 	describe( '#register', function() {
 		it( 'should allow us to access the plugin off the hapi server', function( done ) {
-			assert.notStrictEqual( undefined, server.plugins['plugin-tapestry'] );
+			assert.notStrictEqual( undefined, server.plugins[pluginName] );
 			done();
 		} );
 	} );
@@ -56,7 +61,7 @@ describe( 'pluginTapestry', function() {
 
 			it( 'should expose makeItSo as a function on the plugin', function( done ) {
 				var deferred = Q.defer();
-				assert.equal( typeof server.plugins['plugin-tapestry'].makeItSo, 'function' );
+				assert.equal( typeof server.plugins[pluginName].makeItSo, 'function' );
 				done();
 			} );
 
@@ -71,8 +76,8 @@ describe( 'pluginTapestry', function() {
 
 			it( 'should assign the fixture to the requested input `code`', function() {
 				var deferred = Q.defer();
-				var expected = require( './expected/ABC123Arguments' );
-		 		return server.plugins['plugin-tapestry'].makeItSo( deferred, require( './fixtures/ABC123Key' ) ).then( function( result ) {
+				var expected = loadTestResource( './expected/ABC123Arguments' );
+		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
 					assert.deepEqual( Tapestry.prototype.get.getCall( 0 ).args[0], expected );
 				}, function( error ) {
 					assert.fail( error, expected );
@@ -89,13 +94,13 @@ describe( 'pluginTapestry', function() {
 
 			before( function () {
 				// make tapestry.get return the values we can test against
-				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, _.cloneDeep( require( './fixtures/ABC123Content' ) ) );
+				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/ABC123Content' ) );
 			} );
 
 			it( 'should bind the expected content to the requested fixture input `code`', function() {
 				var deferred = Q.defer();
-				var expected = _.cloneDeep( require( './expected/ABC123Result' ) );
-				return server.plugins['plugin-tapestry'].makeItSo( deferred, _.cloneDeep( require( './fixtures/ABC123Key' ) ) ).then( function( result ) {
+				var expected = loadTestResource( './expected/ABC123Result' );
+				return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
 					assert.deepEqual( result, expected );
 				}, function( error ) {
 					assert.fail( error, expected );
@@ -112,13 +117,13 @@ describe( 'pluginTapestry', function() {
 
 			before( function () {
 				// make tapestry.get return the values we can test against
-				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, _.cloneDeep( require( './fixtures/noResult' ) ) );
+				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/noResult' ) );
 			} );
 
 			it( 'should not add a `code` property', function() {
 				var deferred = Q.defer();
-				var expected = _.cloneDeep( require( './expected/ABC123NoResult' ) );
-				return server.plugins['plugin-tapestry'].makeItSo( deferred, _.cloneDeep( require( './fixtures/ABC123Key' ) ) ).then( function( result ) {
+				var expected = loadTestResource( './expected/ABC123NoResult' );
+				return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
 					assert.deepEqual( result, expected );
 				}, function( error ) {
 					assert.fail( error, expected );
