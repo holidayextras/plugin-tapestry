@@ -60,9 +60,53 @@ describe( 'pluginTapestry', function() {
 		describe( 'check the function is created', function() {
 
 			it( 'should expose makeItSo as a function on the plugin', function( done ) {
-				var deferred = Q.defer();
 				assert.equal( typeof server.plugins[pluginName].makeItSo, 'function' );
 				done();
+			} );
+
+		} );
+
+		describe( 'end to end to check we fail with a thrown error when options arent valid', function() {
+
+			it( 'should reject the promise because of invalid options', function() {
+				var deferred = Q.defer();
+		 		return server.plugins[pluginName].makeItSo( deferred ).then( function( result ) {
+					assert.fail( result, null, successFiredIncorrectlyMessage );
+				}, function( error ) {
+					assert.equal( error.message, 'invalid options' );
+				} );
+			} );
+
+			it( 'should reject the promise because of invalid options.inputData', function() {
+				var deferred = Q.defer();
+		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/invalidOptionsInputData' ) ).then( function( result ) {
+					assert.fail( result, null, successFiredIncorrectlyMessage );
+				}, function( error ) {
+					assert.equal( error.message, 'invalid options.inputData' );
+				} );
+			} );
+
+			it( 'should reject the promise because of invalid options.identifier', function() {
+				var deferred = Q.defer();
+		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/invalidOptionsIdentifier' ) ).then( function( result ) {
+					assert.fail( result, null, successFiredIncorrectlyMessage );
+				}, function( error ) {
+					assert.equal( error.message, 'invalid options.identifier' );
+				} );
+			} );
+
+		} );
+
+		describe( 'end to end to check no code matches is handled correctly', function() {
+
+			it( 'should resolve with an empty object', function() {
+				var deferred = Q.defer();
+				var expected = loadTestResource( './expected/noResult' );
+		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/noCode' ) ).then( function( result ) {
+					assert.deepEqual( result, expected );
+				}, function( error ) {
+					assert.fail( error, expected );
+				} );
 			} );
 
 		} );
