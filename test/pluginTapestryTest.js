@@ -12,8 +12,6 @@
 // use assert, its built in
 var assert = require( 'assert' );
 var Hapi = require( 'hapi' );
-// We're gonna need Q for the promises checking
-var Q = require( 'q' );
 var sinon = require( 'sinon' );
 var Tapestry = require( 'tapestry' );
 var _ = require( 'lodash' );
@@ -69,8 +67,7 @@ describe( 'pluginTapestry', function() {
 		describe( 'end to end to check we fail with a thrown error when options arent valid', function() {
 
 			it( 'should reject the promise because of invalid options', function() {
-				var deferred = Q.defer();
-		 		return server.plugins[pluginName].makeItSo( deferred ).then( function( result ) {
+				return server.plugins[pluginName].makeItSo().then( function( result ) {
 					assert.fail( result, null, successFiredIncorrectlyMessage );
 				}, function( error ) {
 					assert.equal( error.message, 'invalid options' );
@@ -78,8 +75,7 @@ describe( 'pluginTapestry', function() {
 			} );
 
 			it( 'should reject the promise because of invalid options.inputData', function() {
-				var deferred = Q.defer();
-		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/invalidOptionsInputData' ) ).then( function( result ) {
+				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/invalidOptionsInputData' ) ).then( function( result ) {
 					assert.fail( result, null, successFiredIncorrectlyMessage );
 				}, function( error ) {
 					assert.equal( error.message, 'invalid options.inputData' );
@@ -87,8 +83,7 @@ describe( 'pluginTapestry', function() {
 			} );
 
 			it( 'should reject the promise because of invalid options.identifier', function() {
-				var deferred = Q.defer();
-		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/invalidOptionsIdentifier' ) ).then( function( result ) {
+				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/invalidOptionsIdentifier' ) ).then( function( result ) {
 					assert.fail( result, null, successFiredIncorrectlyMessage );
 				}, function( error ) {
 					assert.equal( error.message, 'invalid options.identifier' );
@@ -100,9 +95,8 @@ describe( 'pluginTapestry', function() {
 		describe( 'end to end to check no code matches is handled correctly', function() {
 
 			it( 'should resolve with an empty object', function() {
-				var deferred = Q.defer();
 				var expected = loadTestResource( './expected/noResult' );
-		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/noCode' ) ).then( function( result ) {
+				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/noCode' ) ).then( function( result ) {
 					assert.deepEqual( result, expected );
 				}, function( error ) {
 					assert.fail( error, expected );
@@ -113,15 +107,14 @@ describe( 'pluginTapestry', function() {
 
 		describe( 'end to end to check the correct arguments reach the call to tapestry.get', function() {
 
-			before( function () {
+			before( function() {
 				// spy on the arguments that get to the tapestry.get call
-		 		tapestryMethodStub = sinon.spy( Tapestry.prototype, 'get' );
+				tapestryMethodStub = sinon.spy( Tapestry.prototype, 'get' );
 			} );
 
 			it( 'should assign the fixture to the requested input `code`', function() {
-				var deferred = Q.defer();
 				var expected = loadTestResource( './expected/ABC123Arguments' );
-		 		return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
+				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ).then( function() {
 					assert.deepEqual( Tapestry.prototype.get.getCall( 0 ).args[0], expected );
 				}, function( error ) {
 					assert.fail( error, expected );
@@ -136,15 +129,14 @@ describe( 'pluginTapestry', function() {
 
 		describe( 'end to end to check the result gets handled correctly from the call to tapestry.get', function() {
 
-			before( function () {
+			before( function() {
 				// make tapestry.get return the values we can test against
 				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/ABC123Content' ) );
 			} );
 
 			it( 'should bind the expected content to the requested fixture input `code`', function() {
-				var deferred = Q.defer();
 				var expected = loadTestResource( './expected/ABC123Result' );
-				return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
+				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
 					assert.deepEqual( result, expected );
 				}, function( error ) {
 					assert.fail( error, expected );
@@ -159,15 +151,14 @@ describe( 'pluginTapestry', function() {
 
 		describe( 'end to end to check the result gets handled correctly from the call to tapestry.get when no content is found', function() {
 
-			before( function () {
+			before( function() {
 				// make tapestry.get return the values we can test against
 				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/noResult' ) );
 			} );
 
 			it( 'should not add a `code` property', function() {
-				var deferred = Q.defer();
 				var expected = loadTestResource( './expected/ABC123NoResult' );
-				return server.plugins[pluginName].makeItSo( deferred, loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
+				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
 					assert.deepEqual( result, expected );
 				}, function( error ) {
 					assert.fail( error, expected );
