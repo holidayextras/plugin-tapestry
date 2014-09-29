@@ -1,9 +1,9 @@
 {
 	"requireCurlyBraces" : [ "if", "else", "for", "while", "do", "try", "catch" ],
-	"disallowLeftStickedOperators" : [ "?", "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
-	"disallowRightStickedOperators" : [ "?", "+", "/", "*", ":", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
-	"requireRightStickedOperators" : [ "!" ],
-	"requireLeftStickedOperators" : [ "," ],
+	"requireSpaceBeforePostfixUnaryOperators" : [ "?", "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
+	"requireSpaceAfterPrefixUnaryOperators" : [ "?", "+", "/", "*", ":", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
+	"disallowSpaceAfterPrefixUnaryOperators" : [ "!" ],
+	"disallowSpaceBeforePostfixUnaryOperators" : [ "," ],
 	"disallowImplicitTypeConversion" : [ "numeric", "boolean", "binary", "string" ],
 	"disallowKeywords" : [ "with" ],
 	"disallowKeywordsOnNewLine" : [ "else" ],

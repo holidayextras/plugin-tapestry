@@ -36,10 +36,11 @@ describe( 'pluginTapestry', function() {
 		// stub out some of the calls the plugin makes
 		server = new Hapi.Server();
 		// the plugin expects a few functions to return stuff to register properly
-		// simulate that here
+		// simulate that here so we don't try and talk to them
 		server.methods.getService = sinon.stub().returns( {
 			"sources": [{}]
-		} ); // not actually gonna talk to this
+		} );
+		server.methods.getDataLoggingWrapper = sinon.stub().returns( null );
 		server.methods.getCacheWrapper = sinon.stub().returns( null ); // not testing the cache either
 		server.pack.register( { plugin: require( pluginLocation ) }, function() {
 			done();

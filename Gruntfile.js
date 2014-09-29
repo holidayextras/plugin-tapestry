@@ -26,10 +26,10 @@ module.exports = function( grunt ) {
 				jshintrc: '.jshintrc'
 			},
 			core: {
-				src: ['Gruntfile.js', 'package.json', 'lib/**/*.js']
+				src: ['*.js', 'lib/**/*.js']
 			},
 			test: {
-				src: ['test/**/*.js', 'test/**/*.json']
+				src: ['test/**/*.js']
 			}
 		},
 		jscs: {
@@ -43,7 +43,7 @@ module.exports = function( grunt ) {
 	// load tasks from the specified grunt plugins...
 	grunt.loadNpmTasks( 'grunt-mocha-test' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-jscs-checker' );
+	grunt.loadNpmTasks( 'grunt-jscs' );
 
 	// register task alias'
 	grunt.registerTask( 'default', ['jshint', 'jscs', 'mochaTest'] );
