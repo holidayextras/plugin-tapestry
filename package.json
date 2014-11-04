@@ -1,7 +1,7 @@
 {
 	"name": "plugin-tapestry",
 	"description": "A hapijs plugin to interface Tapestry",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"homepage": "https://bitbucket.org/hxshortbreaks/plugin-tapestry",
 	"author": {
 		"name": "Shortbreaks",
@@ -19,6 +19,7 @@
 	"dependencies": {
 		"tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git",
 		"tapestry-exodus": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-exodus.git",
+		"tapestry-prismic": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-prismic.git",
 		"lodash": "^2.4.1",
 		"q": "^1.0.1"
 	},
