@@ -1,3 +1,5 @@
+## **0.0.5**
+- [**WEB-3786**](https://hxshortbreaks.atlassian.net/browse/WEB-3786) Refactor plugin-tapestry to the basic use case
 ## **0.0.4**
 - [**WEB-3748**](https://hxshortbreaks.atlassian.net/browse/WEB-3748) include tapestry-exodus as a new dependency
 ## **0.0.3**
