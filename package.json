@@ -30,6 +30,8 @@
 		"grunt-mocha-test": "~0.10.2",
 		"hapi": "6.0.2",
 		"mocha": "~1.19.0",
-		"sinon": "1.10.3"
+		"sinon": "1.10.3",
+		"chai": "^1.9.1",
+		"chai-as-promised": "^4.1.1"
 	}
 }
