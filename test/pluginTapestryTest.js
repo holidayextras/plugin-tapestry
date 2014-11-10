@@ -15,15 +15,10 @@
 var assert = require( 'assert' );
 var Hapi = require( 'hapi' );
 var sinon = require( 'sinon' );
-
-
 var chai = require( 'chai' );
 var chaiAsPromised = require( 'chai-as-promised' );
 chai.use( chaiAsPromised );
 var should = chai.should();
-
-
-
 var Tapestry = require( 'tapestry' );
 var _ = require( 'lodash' );
 
@@ -89,79 +84,26 @@ describe( 'pluginTapestry', function() {
 		} );
 
 		describe( 'end to end to check no code matches is handled correctly', function() {
-
-			it( 'should resolve with an empty object', function() {
+			it( 'should reject the promise because no results came back', function() {
 				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/noCode' ) ).should.eventually.be.rejected.and.eventually.have.property( 'error' ).that.is.an.instanceof( Error );
 			} );
 		} );
 
-		// describe( 'end to end to check the correct arguments reach the call to tapestry.get', function() {
+		describe( 'end to end to check the result gets handled correctly from the call to tapestry.get', function() {
+			before( function() {
+				// make tapestry.get return the values we can test against
+				tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/ABC123Content' ) );
+			} );
 
-		// 	before( function() {
-		// 		// spy on the arguments that get to the tapestry.get call
-		// 		tapestryMethodStub = sinon.spy( Tapestry.prototype, 'get' );
-		// 	} );
+			it( 'should return an array of objects from the ids passed in', function() {
+				var expected = loadTestResource( './expected/ABC234Result' );
+				return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ).should.eventually.be.fulfilled.and.eventually.deep.equal( expected );
+			} );
 
-		// 	it( 'should assign the fixture to the requested input `code`', function() {
-		// 		var expected = loadTestResource( './expected/ABC123Arguments' );
-		// 		return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ).then( function() {
-		// 			//assert.deepEqual( Tapestry.prototype.get.getCall( 0 ).args[0], expected );
-		// 		}, function( error ) {
-		// 			//assert.fail( error, expected );
-		// 		} );
-		// 	} );
-
-		// 	after( function() {
-		// 		tapestryMethodStub.restore();
-		// 	} );
-		// } );
-
-
-
-				// var expected = loadTestResource( './expected/noResult' );
-				// return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/noCode' )  ).should.eventually.be.fulfilled.and.eventually.deep.equal( expected );
-
-		// describe( 'end to end to check the result gets handled correctly from the call to tapestry.get', function() {
-
-		// 	before( function() {
-		// 		// make tapestry.get return the values we can test against
-		// 		tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/ABC123Content' ) );
-		// 	} );
-
-		// 	it( 'should bind the expected content to the requested fixture input `code`', function() {
-		// 		var expected = loadTestResource( './expected/ABC123Result' );
-		// 		return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
-		// 			assert.deepEqual( result, expected );
-		// 		}, function( error ) {
-		// 			assert.fail( error, expected );
-		// 		} );
-		// 	} );
-
-		// 	after( function() {
-		// 		tapestryMethodStub.restore();
-		// 	} );
-		// } );
-
-		// describe( 'end to end to check the result gets handled correctly from the call to tapestry.get when no content is found', function() {
-
-		// 	before( function() {
-		// 		// make tapestry.get return the values we can test against
-		// 		tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/noResult' ) );
-		// 	} );
-
-		// 	it( 'should not add a `code` property', function() {
-		// 		var expected = loadTestResource( './expected/ABC123NoResult' );
-		// 		return server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
-		// 			assert.deepEqual( result, expected );
-		// 		}, function( error ) {
-		// 			assert.fail( error, expected );
-		// 		} );
-		// 	} );
-
-		// 	after( function() {
-		// 		tapestryMethodStub.restore();
-		// 	} );
-		// } );
+			after( function() {
+				tapestryMethodStub.restore();
+			} );
+		} );
 
 	} );
 
@@ -210,7 +152,7 @@ describe( 'pluginTapestry', function() {
 
 			it( 'should assign the fixture to the requested input `code`', function() {
 				var expected = loadTestResource( './expected/ABC123Arguments' );
-				return server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ).then( function() {
+				return server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
 					assert.deepEqual( Tapestry.prototype.get.getCall( 0 ).args[0], expected );
 				}, function( error ) {
 					assert.fail( error, expected );
@@ -232,11 +174,7 @@ describe( 'pluginTapestry', function() {
 
 			it( 'should bind the expected content to the requested fixture input `code`', function() {
 				var expected = loadTestResource( './expected/ABC123Result' );
-				return server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
-					assert.deepEqual( result, expected );
-				}, function( error ) {
-					assert.fail( error, expected );
-				} );
+				return server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ).should.eventually.be.fulfilled.and.eventually.deep.equal( expected );
 			} );
 
 			after( function() {
@@ -254,11 +192,7 @@ describe( 'pluginTapestry', function() {
 
 			it( 'should not add a `code` property', function() {
 				var expected = loadTestResource( './expected/ABC123NoResult' );
-				return server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ).then( function( result ) {
-					assert.deepEqual( result, expected );
-				}, function( error ) {
-					assert.fail( error, expected );
-				} );
+				return server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ).should.eventually.be.fulfilled.and.eventually.deep.equal( expected );
 			} );
 
 			after( function() {
