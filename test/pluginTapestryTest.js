@@ -47,7 +47,9 @@ describe( 'pluginTapestry', function() {
 			"sources": [{}]
 		} );
 		server.methods.getDataLoggingWrapper = sinon.stub().returns( null );
-		server.methods.getCacheWrapper = sinon.stub().returns( null ); // not testing the cache either
+		server.methods.getConfig = sinon.stub().returns( {
+			cache: false
+		} ); // not testing the cache either
 		server.pack.register( { plugin: require( pluginLocation ) }, function() {
 			done();
 		} );
