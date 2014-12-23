@@ -1,7 +1,7 @@
 {
 	"name": "plugin-tapestry",
 	"description": "A hapijs plugin to interface Tapestry",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"homepage": "https://bitbucket.org/hxshortbreaks/plugin-tapestry",
 	"author": {
 		"name": "Shortbreaks",
