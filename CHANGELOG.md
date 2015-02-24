@@ -1,3 +1,5 @@
+## **0.1.0**
+- [**WEB-4162**](https://hxshortbreaks.atlassian.net/browse/WEB-4162) Upgrade to hapijs v8.
 ## **0.0.7**
 - [**WEB-4085**](https://hxshortbreaks.atlassian.net/browse/WEB-4085) Refactor again, now we're just passing the cache configuration down to Tapestry, Tapestry itself will manage it's own cache.
 ## **0.0.6**

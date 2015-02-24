@@ -3,14 +3,6 @@
 /* jshint -W030 */ /* Stop linter complaining about expression */
 'use strict';
 
-/*
-* @name /test/pluginTapestryTest.js
-* @description Mocha powered testing of the core library
-* @since Fri Jul 11 2014
-* @author Kevin Hodges <kevin.hodges@holidayextras.com>
-*/
-
-
 // use assert, its built in
 var assert = require( 'assert' );
 var Hapi = require( 'hapi' );
