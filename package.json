@@ -2,14 +2,14 @@
 	"name": "plugin-tapestry",
 	"description": "A hapijs plugin to interface Tapestry",
 	"version": "0.1.0",
-	"homepage": "https://bitbucket.org/hxshortbreaks/plugin-tapestry",
+	"homepage": "https://github.com/holidayextras/plugin-tapestry",
 	"author": {
 		"name": "Shortbreaks",
 		"email": "shortbreaksdev@holidayextras.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@bitbucket.org:hxshortbreaks/plugin-tapestry.git"
+		"url": "git@github.com:holidayextras/plugin-tapestry.git"
 	},
 	"license": "MIT",
 	"main": "index",
