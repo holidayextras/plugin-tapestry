@@ -37,6 +37,7 @@
 		"hapi": "6.0.2",
 		"sinon": "1.10.3",
 		"chai": "1.9.1",
+		"istanbul": "^0.3.7",
 		"chai-as-promised": "4.1.1"
 	}
 }
