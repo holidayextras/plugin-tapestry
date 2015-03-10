@@ -1,6 +1,6 @@
 # plugin-tapestry
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[ ![Codeship Status for holidayextras/plugin-tapestry](https://codeship.com/projects/a5477000-a951-0132-cdc9-52627b42595c/status?branch=master)](https://codeship.com/projects/67648)
 
 ## About
 
