@@ -20,7 +20,8 @@ var successFiredIncorrectlyMessage = 'Deferred resolved incorrectly';
 // where is out plugin?
 var pluginLocation = '../lib/pluginTapestry';
 var pluginName = 'plugin-tapestry';
-var server, tapestryMethodStub;
+var server;
+var tapestryMethodStub;
 
 // allow resources to be required safely
 function loadTestResource( resource ) {
@@ -36,7 +37,7 @@ describe( 'pluginTapestry', function() {
 		// the plugin expects a few functions to return stuff to register properly
 		// simulate that here so we don't try and talk to them
 		server.methods.getService = sinon.stub().returns( {
-			"sources": [{}]
+			sources: [{}]
 		} );
 		server.methods.getDataLoggingWrapper = sinon.stub().returns( null );
 		server.methods.getConfig = sinon.stub().returns( {

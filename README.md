@@ -1,10 +1,10 @@
 # plugin-tapestry
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[ ![Codeship Status for holidayextras/plugin-tapestry](https://codeship.com/projects/a5477000-a951-0132-cdc9-52627b42595c/status?branch=master)](https://codeship.com/projects/67648)
 
 ## About
 
-A hapi style plugin to interface Tapestry
+A [hapi](http://hapijs.com/) style plugin to interface Tapestry.
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ git clone git@github.com:holidayextras/plugin-tapestry.git
 
 or to install this plugin to your Hapi server you will need to add this line to your dependencies in your package.json
 ```
-"plugin-tapestry": "git+ssh://git@github.com/holidayextras/plugin-tapestry.git"
+plugin-tapestry: 'git+ssh://git@github.com/holidayextras/plugin-tapestry.git'
 ```
 
 After you will need to install this dependency and its dependencies
@@ -49,7 +49,7 @@ request.server.plugins['plugin-tapestry'].makeItSo( tapestryRequestDeferred, opt
 
 ## Contributing
 
-Code is linted by ".jshintrc" and checked against the coding style guide "shortbreaks.jscs.json". We also use Mocha to test our code, to run all of this use ` $ grunt test `.
+Code is linted checked against the style guide with [make-up](https://github.com/holidayextras/make-up), running npm test will run all tests required.
 
 ## License
 Copyright (c) 2015 Shortbreaks
