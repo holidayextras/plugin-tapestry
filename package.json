@@ -1,37 +1,42 @@
 {
 	"name": "plugin-tapestry",
 	"description": "A hapijs plugin to interface Tapestry",
-	"version": "0.1.0",
-	"homepage": "https://bitbucket.org/hxshortbreaks/plugin-tapestry",
+	"version": "0.1.1",
+  "homepage": "https://github.com/holidayextras/plugin-tapestry",
 	"author": {
 		"name": "Shortbreaks",
 		"email": "shortbreaksdev@holidayextras.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@bitbucket.org:hxshortbreaks/plugin-tapestry.git"
+    "url": "git@github.com:holidayextras/plugin-tapestry.git"
 	},
 	"license": "MIT",
 	"main": "index",
 	"engines": {
 		"node": ">= 0.10.0"
 	},
+  "scripts": {
+    "test": "grunt jshint && grunt jscs && istanbul cover _mocha -- --recursive -R spec"
+  },
 	"dependencies": {
 		"tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git",
 		"tapestry-exodus": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-exodus.git",
 		"tapestry-prismic": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-prismic.git",
-		"lodash": "^2.4.1",
-		"q": "^1.0.1"
+		"lodash": "2.4.1",
+		"q": "1.0.1"
 	},
 	"devDependencies": {
-		"grunt": "~0.4.3",
-		"grunt-contrib-jshint": "^0.10.0",
-		"grunt-jscs": "^0.6.2",
-		"grunt-mocha-test": "~0.10.2",
-		"hapi": "6.0.2",
-		"mocha": "~1.19.0",
-		"sinon": "1.10.3",
-		"chai": "^1.9.1",
-		"chai-as-promised": "^4.1.1"
+    "chai": "1.9.1",
+    "chai-as-promised": "4.3.0",
+    "grunt": "0.4.5",
+    "grunt-contrib-jshint": "0.11.0",
+    "grunt-jscs": "1.5.0",
+    "hapi": "6.0.2",
+    "istanbul": "0.3.7",
+    "lodash": "3.5.0",
+    "make-up": "1.0.4",
+    "mocha": "1.20.1",
+    "sinon": "1.12.2"
 	}
 }

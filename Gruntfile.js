@@ -1,32 +1,18 @@
 /* jslint node: true */
 'use strict';
 
-/*
-* @name /Gruntfile.js
-* @description Le Gruntfile...
-*              keep this tidy, alphabeticised etc
-* @since Fri Jul 11 2014
-* @author Kevin Hodges <kevin.hodges@holidayextras.com>
-*/
+var makeup = require( 'make-up' );
 
 module.exports = function( grunt ) {
 
 	// project configuration
 	grunt.initConfig( {
-		mochaTest: {
-			test: {
-				options: {
-					reporter: 'spec',
-				},
-				src: ['test/**/*Test.js']
-			}
-		},
 		jshint: {
 			options: {
-				jshintrc: '.jshintrc'
+				jshintrc: makeup( 'jshintrc.json' )
 			},
 			core: {
-				src: ['*.js', 'lib/**/*.js']
+				src: ['*.js']
 			},
 			test: {
 				src: ['test/**/*.js']
@@ -34,19 +20,14 @@ module.exports = function( grunt ) {
 		},
 		jscs: {
 			options: {
-				config: 'shortbreaks.jscs.json'
+				config: makeup( 'jscsrc.json' )
 			},
 			src: ['<%= jshint.core.src %>', '<%= jshint.test.src %>']
 		}
 	} );
 
 	// load tasks from the specified grunt plugins...
-	grunt.loadNpmTasks( 'grunt-mocha-test' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
-
-	// register task alias'
-	grunt.registerTask( 'default', ['jshint', 'jscs', 'mochaTest'] );
-	grunt.registerTask( 'test', ['mochaTest'] );
 
 };
