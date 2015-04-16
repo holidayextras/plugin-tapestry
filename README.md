@@ -1,6 +1,6 @@
 # plugin-tapestry
 
-[ ![Codeship Status for holidayextras/plugin-tapestry](https://codeship.com/projects/a5477000-a951-0132-cdc9-52627b42595c/status?branch=master)](https://codeship.com/projects/67648)
+[![Build Status](https://api.shippable.com/projects/54ff09505ab6cc135296f9a2/badge?branchName=master)](https://app.shippable.com/projects/54ff09505ab6cc135296f9a2/builds/latest)
 
 ## About
 
