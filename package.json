@@ -20,7 +20,7 @@
     "test": "grunt jshint && grunt jscs && istanbul cover _mocha -- --recursive -R spec"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git",
+    "tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git#v1.0.0",
     "tapestry-exodus": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-exodus.git#v1.0.0",
     "tapestry-prismic": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-prismic.git#v1.0.0",
     "lodash": "2.4.1",
