@@ -1,7 +1,7 @@
 {
   "name": "plugin-tapestry",
   "description": "A hapijs plugin to interface Tapestry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/holidayextras/plugin-tapestry",
   "author": {
     "name": "Shortbreaks",
@@ -20,9 +20,9 @@
     "test": "grunt jshint && grunt jscs && istanbul cover _mocha -- --recursive -R spec"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry.git#v1.0.0",
-    "tapestry-exodus": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-exodus.git#v1.0.0",
-    "tapestry-prismic": "git+ssh://git@bitbucket.org/hxshortbreaks/tapestry-prismic.git#v1.0.0",
+    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v1.0.1",
+    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v1.0.1",
+    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v1.0.1",
     "lodash": "2.4.1",
     "q": "1.0.1"
   },
