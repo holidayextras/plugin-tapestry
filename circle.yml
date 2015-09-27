@@ -8,13 +8,14 @@ dependencies:
     - chmod +x checkRelease.sh
     - chmod +x markRelease.sh
     - ./checkRelease.sh
-    - npm install istanbul -g
+    - npm install grunt grunt-cli istanbul -g
 test:
   pre:
     - mkdir -p $CIRCLE_TEST_REPORTS/unit
     - mkdir -p $CIRCLE_TEST_REPORTS/coverage
   override:
-    - node_modules/.bin/make-up lib integrations test
+    - grunt jshint
+    - grunt jscs
     - istanbul cover _mocha --  --timeout 15000 --recursive test/**/*Test.js -R xunit > $CIRCLE_TEST_REPORTS/unit/results.xml
   post:
     - cp -r ./coverage/ $CIRCLE_ARTIFACTS/coverage
