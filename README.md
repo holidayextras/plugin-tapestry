@@ -1,6 +1,6 @@
 # plugin-tapestry
 
-[![Build Status](https://api.shippable.com/projects/54ff09505ab6cc135296f9a2/badge?branchName=master)](https://app.shippable.com/projects/54ff09505ab6cc135296f9a2/builds/latest)
+[![Circle CI](https://circleci.com/gh/holidayextras/plugin-tapestry/tree/master.svg?style=svg&circle-token=de4b055da0e752a4775057055d24efdb63705d9e)](https://circleci.com/gh/holidayextras/plugin-tapestry)
 
 ## About
 
