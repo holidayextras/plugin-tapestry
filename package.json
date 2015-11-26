@@ -1,7 +1,7 @@
 {
   "name": "plugin-tapestry",
   "description": "A hapijs plugin to interface Tapestry",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "homepage": "https://github.com/holidayextras/plugin-tapestry",
   "author": {
     "name": "Shortbreaks",
@@ -17,12 +17,12 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "node_modules/deployment-helpers/nodeApps/preRelease.sh && grunt jshint && grunt jscs && istanbul cover _mocha -- --recursive -R spec"
+    "test": "node_modules/deployment-helpers/nodeApps/preRelease.sh && node_modules/.bin/make-up lib test && istanbul cover _mocha -- --recursive -R spec"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v1.3.0",
-    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v1.1.1",
-    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v1.1.1",
+    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v1.3.1",
+    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v1.1.2",
+    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v1.1.2",
     "lodash": "2.4.1",
     "q": "1.0.1"
   },
@@ -30,12 +30,9 @@
     "chai": "1.9.1",
     "chai-as-promised": "4.3.0",
     "deployment-helpers": "git+ssh://git@github.com:holidayextras/deployment-helpers.git",
-    "grunt": "0.4.5",
-    "grunt-contrib-jshint": "0.11.0",
-    "grunt-jscs": "1.5.0",
     "hapi": "6.0.2",
     "istanbul": "0.3.7",
-    "make-up": "1.0.4",
+    "make-up": "6.0.0",
     "mocha": "1.20.1",
     "sinon": "1.12.2"
   }
