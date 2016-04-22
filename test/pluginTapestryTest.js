@@ -3,9 +3,11 @@
 
 var Hapi = require( 'hapi' );
 var sinon = require( 'sinon' );
-var chai = require( 'chai' );
-chai.use( require( 'chai-as-promised' ) );
-var expect = chai.expect;
+var sandbox = sinon.sandbox.create();
+var expect = require('chai')
+  .use(require('chai-as-promised'))
+  .use(require('sinon-chai'))
+  .expect;
 var Tapestry = require( 'tapestry' );
 var _ = require( 'lodash' );
 
@@ -13,7 +15,6 @@ var _ = require( 'lodash' );
 var pluginLocation = '../lib/pluginTapestry';
 var pluginName = 'plugin-tapestry';
 var server;
-var tapestryMethodStub;
 
 // allow resources to be required safely
 function loadTestResource( resource ) {
@@ -21,6 +22,10 @@ function loadTestResource( resource ) {
 }
 
 describe( 'pluginTapestry', function() {
+
+  afterEach(function() {
+    sandbox.restore();
+  });
 
   before( function( done ) {
 
@@ -77,19 +82,47 @@ describe( 'pluginTapestry', function() {
     } );
 
     describe( 'end to end to check the result gets handled correctly from the call to tapestry.get', function() {
-      before( function() {
-        // make tapestry.get return the values we can test against
-        tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/ABC123Content' ) );
-      } );
+      beforeEach(function() {
+        sandbox.stub(Tapestry.prototype, 'get').yields(null, loadTestResource('./fixtures/ABC123Content'));
+        sandbox.stub(_, 'pick');
+      });
 
       it( 'should return an array of objects from the ids passed in', function() {
         var expected = loadTestResource( './expected/ABC234Result' );
-        return expect( server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/ABC123Key' ) ) ).to.eventually.be.fulfilled.and.eventually.deep.equal( expected );
+        var result = server.plugins[pluginName].makeItSo(loadTestResource('./fixtures/ABC123Key'));
+        return expect(result).to.become(expected);
       } );
 
-      after( function() {
-        tapestryMethodStub.restore();
-      } );
+    } );
+
+    describe('with extra params', function() {
+      var options = {
+        ids: 'IDS',
+        identifier: 'IDENT',
+        lang: 'LANG',
+        version: 'VERSION',
+        extra: 'UNWANTED'
+      };
+      beforeEach(function() {
+        sandbox.stub(Tapestry.prototype, 'get');
+        sandbox.spy(_, 'pick');
+        server.plugins[pluginName].makeItSo(options);
+      });
+
+      it('should pick the correct params', function() {
+        expect(_.pick).to.have.been.calledWith(options, ['identifier', 'ids', 'lang', 'version']);
+      });
+
+      it('should pass only certain params on to tapestry', function() {
+        var cleanOptions = {
+          ids: 'IDS',
+          identifier: 'IDENT',
+          lang: 'LANG',
+          version: 'VERSION'
+        };
+        expect(Tapestry.prototype.get).to.have.been.calledWith(cleanOptions);
+      });
+
     } );
 
   } );
@@ -134,7 +167,7 @@ describe( 'pluginTapestry', function() {
 
       before( function() {
         // spy on the arguments that get to the tapestry.get call
-        tapestryMethodStub = sinon.spy( Tapestry.prototype, 'get' );
+        sandbox.spy(Tapestry.prototype, 'get');
       } );
 
       it( 'should assign the fixture to the requested input `code`', function() {
@@ -144,17 +177,12 @@ describe( 'pluginTapestry', function() {
         } );
       } );
 
-      after( function() {
-        tapestryMethodStub.restore();
-      } );
-
     } );
 
     describe( 'end to end to check the result gets handled correctly from the call to tapestry.get', function() {
 
       before( function() {
-        // make tapestry.get return the values we can test against
-        tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/ABC123Content' ) );
+        sandbox.stub(Tapestry.prototype, 'get').yields(null, loadTestResource('./fixtures/ABC123Content'));
       } );
 
       it( 'should bind the expected content to the requested fixture input `code`', function() {
@@ -162,26 +190,17 @@ describe( 'pluginTapestry', function() {
         return expect( server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ) ).to.eventually.be.fulfilled.and.eventually.deep.equal( expected );
       } );
 
-      after( function() {
-        tapestryMethodStub.restore();
-      } );
-
     } );
 
     describe( 'end to end to check the result gets handled correctly from the call to tapestry.get when no content is found', function() {
 
       before( function() {
-        // make tapestry.get return the values we can test against
-        tapestryMethodStub = sinon.stub( Tapestry.prototype, 'get' ).callsArgWith( 1, null, loadTestResource( './fixtures/noResult' ) );
+        sandbox.stub(Tapestry.prototype, 'get').yields(null, loadTestResource('./fixtures/noResult'));
       } );
 
       it( 'should not add a `code` property', function() {
         var expected = loadTestResource( './expected/ABC123NoResult' );
         return expect( server.plugins[pluginName].makeItSoComplex( loadTestResource( './fixtures/ABC123Key' ) ) ).to.eventually.be.fulfilled.and.eventually.deep.equal( expected );
-      } );
-
-      after( function() {
-        tapestryMethodStub.restore();
       } );
 
     } );
