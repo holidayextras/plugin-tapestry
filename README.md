@@ -32,11 +32,11 @@ While bootstrapping your Hapi server, include the plugin like so:
 
 ```
 server.pack.register( [
-	require( 'plugin-tapestry' )
+  require( 'plugin-tapestry' )
 ], function() {
-	server.start( function() {
-		console.log( 'server started with plugin-tapestry plugin initialised' );
-	} );
+  server.start( function() {
+    console.log( 'server started with plugin-tapestry plugin initialised' );
+  } );
 } );
 ```
 
@@ -52,5 +52,5 @@ request.server.plugins['plugin-tapestry'].makeItSo( tapestryRequestDeferred, opt
 Code is linted checked against the style guide with [make-up](https://github.com/holidayextras/make-up), running npm test will run all tests required.
 
 ## License
-Copyright (c) 2015 Shortbreaks
+Copyright (c) 2016 Shortbreaks
 Licensed under the MIT license.
