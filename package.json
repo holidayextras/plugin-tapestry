@@ -27,7 +27,7 @@
   "dependencies": {
     "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v1.4.0",
     "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v1.2.0",
-    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v1.7.0",
+    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#WEB-9592",
     "lodash": "2.4.1",
     "q": "1.0.1"
   },
