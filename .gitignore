@@ -82,3 +82,4 @@ node_modules
 
 # Make-up
 .eslintrc
+.eslintcache

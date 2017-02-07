@@ -1,7 +1,7 @@
 {
   "name": "plugin-tapestry",
   "description": "A hapijs plugin to interface Tapestry",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "homepage": "https://github.com/holidayextras/plugin-tapestry",
   "author": {
     "name": "Shortbreaks",
@@ -14,33 +14,33 @@
   "license": "MIT",
   "main": "lib/pluginTapestry",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 6.9.4"
   },
   "scripts": {
     "ci": "node_modules/.bin/istanbul cover _mocha -- -R xunit > $CIRCLE_TEST_REPORTS/unit/results.xml",
-    "lint": "node_modules/.bin/make-up lib test",
+    "lint": "node_modules/.bin/make-up -i eslint lib test",
     "prerelease": "node_modules/deployment-helpers/nodeApps/preRelease.sh",
     "pretest": "npm run prerelease",
     "test:coverage": "istanbul cover _mocha",
     "test": "npm run lint && npm run test:coverage"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v1.4.0",
-    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v1.2.0",
-    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v1.7.0",
-    "lodash": "2.4.1",
-    "q": "1.0.1"
+    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#node_bump",
+    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#node_bump",
+    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#node_bump",
+    "lodash": "4.17.4",
+    "q": "1.4.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
+    "chai-as-promised": "^6.0.0",
     "coverage-percentage": "0.0.2",
     "deployment-helpers": "git+ssh://git@github.com:holidayextras/deployment-helpers.git",
-    "hapi": "6.0.2",
-    "istanbul": "0.3.7",
-    "make-up": "6.0.0",
-    "mocha": "1.20.1",
-    "sinon": "1.12.2",
+    "hapi": "16.1.0",
+    "istanbul": "0.4.5",
+    "make-up": "10.0.0",
+    "mocha": "3.2.0",
+    "sinon": "1.17.7",
     "sinon-chai": "^2.8.0"
   }
 }

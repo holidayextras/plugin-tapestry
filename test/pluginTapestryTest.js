@@ -40,7 +40,7 @@ describe( 'pluginTapestry', function() {
     server.methods.getConfig = sinon.stub().returns( {
       cache: false
     } ); // not testing the cache either
-    server.pack.register( { plugin: require( pluginLocation ) }, function() {
+    server.register( { register: require( pluginLocation ) }, function() {
       done();
     } );
   } );
