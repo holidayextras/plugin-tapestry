@@ -1,7 +1,7 @@
 {
   "name": "plugin-tapestry",
   "description": "A hapijs plugin to interface Tapestry",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "homepage": "https://github.com/holidayextras/plugin-tapestry",
   "author": {
     "name": "Shortbreaks",
@@ -18,14 +18,16 @@
   },
   "scripts": {
     "ci": "node_modules/.bin/istanbul cover _mocha -- -R xunit > $CIRCLE_TEST_REPORTS/unit/results.xml",
-    "lint": "node_modules/.bin/make-up lib test",
+    "lint": "node_modules/.bin/make-up -i eslint lib test",
     "prerelease": "node_modules/deployment-helpers/nodeApps/preRelease.sh",
     "pretest": "npm run prerelease",
     "test:coverage": "istanbul cover _mocha",
     "test": "npm run lint && npm run test:coverage"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#node_bump",
+    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#1.4.0",
+    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#node_bump",
+    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#1.7.0",
     "lodash": "4.17.4",
     "q": "1.4.1"
   },
