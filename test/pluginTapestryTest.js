@@ -76,8 +76,9 @@ describe( 'pluginTapestry', function() {
     } );
 
     describe( 'end to end to check no code matches is handled correctly', function() {
-      it( 'should reject the promise because no results came back', function() {
-        return expect( server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/noCode' ) ) ).to.eventually.be.rejected.and.eventually.have.property( 'error' ).that.is.an.instanceof( Error );
+      it( 'should return empty array when no results came back', function() {
+        var expected = [];
+        return expect( server.plugins[pluginName].makeItSo( loadTestResource( './fixtures/noCode' ) ) ).to.become(expected);
       } );
     } );
 
