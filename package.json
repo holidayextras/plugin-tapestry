@@ -25,22 +25,22 @@
     "test": "npm run lint && npm run test:coverage"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v2.0.0",
-    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v2.0.0",
-    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v2.0.0",
+    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#node_8",
+    "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#node_8",
+    "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#node_8",
     "lodash": "4.17.4",
-    "q": "1.4.1"
+    "q": "1.5.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "coverage-percentage": "0.0.2",
     "deployment-helpers": "git+ssh://git@github.com:holidayextras/deployment-helpers.git",
-    "hapi": "16.1.0",
+    "hapi": "16.5.2",
     "istanbul": "0.4.5",
     "make-up": "10.0.0",
-    "mocha": "3.2.0",
-    "sinon": "1.17.7",
-    "sinon-chai": "^2.8.0"
+    "mocha": "3.5.0",
+    "sinon": "3.2.1",
+    "sinon-chai": "^2.13.0"
   }
 }
