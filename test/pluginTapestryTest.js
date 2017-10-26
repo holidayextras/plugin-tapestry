@@ -111,7 +111,7 @@ describe( 'pluginTapestry', function() {
       });
 
       it('should pick the correct params', function() {
-        expect(_.pick).to.have.been.calledWith(options, ['identifier', 'ids', 'lang', 'version']);
+        expect(_.pick).to.have.been.calledWith(options, ['brand', 'identifier', 'ids', 'lang', 'version']);
       });
 
       it('should pass only certain params on to tapestry', function() {
