@@ -25,7 +25,7 @@
     "test": "npm run lint && npm run test:coverage"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#FP-2311",
+    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v2.0.1",
     "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v2.0.0",
     "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v2.1.0",
     "lodash": "4.17.4",
