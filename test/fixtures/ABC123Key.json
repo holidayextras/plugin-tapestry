@@ -3,5 +3,6 @@
 		"code": "ABC123"
 	},
 	"ids": ["ABC123"],
-	"identifier": "123456789"
+	"identifier": "123456789",
+	"brand": "test"
 }
