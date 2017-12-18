@@ -27,7 +27,7 @@ describe( 'pluginTapestry', function() {
     sandbox.restore();
   });
 
-  before( function( done ) {
+  before( async function(  ) {
 
     // stub out some of the calls the plugin makes
     server = new Hapi.Server();
@@ -40,9 +40,7 @@ describe( 'pluginTapestry', function() {
     server.methods.getConfig = sinon.stub().returns( {
       cache: false
     } ); // not testing the cache either
-    server.register( { register: require( pluginLocation ) }, function() {
-      done();
-    } );
+    await server.register( require( pluginLocation ))
   } );
 
   describe( '#register', function() {
