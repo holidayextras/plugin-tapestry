@@ -36,12 +36,15 @@
     "chai-as-promised": "^7.1.1",
     "coverage-percentage": "0.0.2",
     "deployment-helpers": "git+ssh://git@github.com:holidayextras/deployment-helpers.git",
-    "hapi": "17.1.1",
+    "hapi": "17.x.x",
     "istanbul": "0.4.5",
     "mocha": "4.0.1",
     "sinon": "4.1.3",
     "sinon-chai": "^2.14.0",
     "standard": "^10.0.3"
+  },
+  "peerDependencies": {
+    "hapi": "^17.x.x"
   },
   "standard": {
     "env": [
