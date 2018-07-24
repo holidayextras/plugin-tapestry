@@ -17,13 +17,13 @@
     "node": ">= 8.9.3"
   },
   "scripts": {
-    "ci": "node_modules/.bin/istanbul cover _mocha -- -R xunit > $CIRCLE_TEST_REPORTS/unit/results.xml",
+    "ci": "echo 'nothing to do here'",
     "lint": "standard",
     "prerelease": "node_modules/deployment-helpers/nodeApps/preRelease.sh",
     "pretest": "npm run prerelease",
     "test:coverage": "istanbul cover _mocha",
     "test": "npm run lint && npm run test:coverage",
-    "deploy": "exit 0"
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v2.0.1",
