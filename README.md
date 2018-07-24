@@ -1,7 +1,5 @@
 # plugin-tapestry
 
-[![Circle CI](https://circleci.com/gh/holidayextras/plugin-tapestry/tree/master.svg?style=svg&circle-token=de4b055da0e752a4775057055d24efdb63705d9e)](https://circleci.com/gh/holidayextras/plugin-tapestry)
-
 ## About
 
 A [hapi](http://hapijs.com/) style plugin to interface Tapestry.
