@@ -1,7 +1,7 @@
 {
   "name": "plugin-tapestry",
   "description": "A hapijs plugin to interface Tapestry",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "homepage": "https://github.com/holidayextras/plugin-tapestry",
   "author": {
     "name": "Shortbreaks",
@@ -26,7 +26,7 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
-    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v2.2.1",
+    "tapestry": "git+ssh://git@github.com:holidayextras/tapestry.git#v2.2.2",
     "tapestry-exodus": "git+ssh://git@github.com:holidayextras/tapestry-exodus.git#v2.0.0",
     "tapestry-prismic": "git+ssh://git@github.com:holidayextras/tapestry-prismic.git#v2.3.0",
     "lodash": "4.17.4",
