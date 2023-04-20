@@ -1,7 +1,7 @@
 {
   "name": "plugin-tapestry",
   "description": "A hapijs plugin to interface Tapestry",
-  "version": "3.4.6",
+  "version": "3.4.7",
   "homepage": "https://github.com/holidayextras/plugin-tapestry",
   "author": {
     "name": "Shortbreaks",
@@ -45,7 +45,7 @@
     "standard": "^10.0.3"
   },
   "peerDependencies": {
-    "hapi": "^17.x.x"
+    "hapi": "^20.x.x"
   },
   "standard": {
     "env": [
