@@ -45,7 +45,7 @@
     "standard": "^10.0.3"
   },
   "peerDependencies": {
-    "@hapi/hapi": "^20.x.x"
+    "@hapi/hapi": "^21.x.x"
   },
   "standard": {
     "env": [
