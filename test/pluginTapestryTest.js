@@ -1,7 +1,7 @@
 /* eslint no-unused-expressions:0 */
 'use strict'
 
-var Hapi = require('hapi')
+var Hapi = require('@hapi/hapi')
 var sinon = require('sinon')
 var sandbox = sinon.sandbox.create()
 var expect = require('chai')

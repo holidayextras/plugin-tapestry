@@ -37,7 +37,7 @@
     "chai-as-promised": "^7.1.1",
     "coverage-percentage": "0.0.2",
     "deployment-helpers": "git+ssh://git@github.com:holidayextras/deployment-helpers.git",
-    "hapi": "17.x.x",
+    "@hapi/hapi": "^21.3.1",
     "istanbul": "0.4.5",
     "mocha": "4.0.1",
     "sinon": "4.1.3",
