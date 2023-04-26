@@ -14,7 +14,7 @@
   "license": "MIT",
   "main": "lib/pluginTapestry",
   "engines": {
-    "node": ">= 8.9.3"
+    "node": ">=16"
   },
   "scripts": {
     "ci": "echo 'nothing to do here'",
