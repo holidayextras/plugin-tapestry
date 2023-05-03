@@ -1,20 +1,20 @@
 /* eslint no-unused-expressions:0 */
 'use strict'
 
-var Hapi = require('hapi')
-var sinon = require('sinon')
-var sandbox = sinon.sandbox.create()
-var expect = require('chai')
+const Hapi = require('@hapi/hapi')
+const sinon = require('sinon')
+const sandbox = sinon.sandbox.create()
+const expect = require('chai')
   .use(require('chai-as-promised'))
   .use(require('sinon-chai'))
   .expect
-var Tapestry = require('tapestry')
-var _ = require('lodash')
+const Tapestry = require('tapestry')
+const _ = require('lodash')
 
 // where is out plugin?
-var pluginLocation = '../lib/pluginTapestry'
-var pluginName = 'plugin-tapestry'
-var server
+const pluginLocation = '../lib/pluginTapestry'
+const pluginName = 'plugin-tapestry'
+let server
 
 // allow resources to be required safely
 function loadTestResource (resource) {
@@ -72,7 +72,7 @@ describe('pluginTapestry', function () {
 
     describe('end to end to check no code matches is handled correctly', function () {
       it('should return empty array when no results came back', function () {
-        var expected = []
+        const expected = []
         return expect(server.plugins[pluginName].makeItSo(loadTestResource('./fixtures/noCode'))).to.become(expected)
       })
     })
@@ -84,14 +84,14 @@ describe('pluginTapestry', function () {
       })
 
       it('should return an array of objects from the ids passed in', function () {
-        var expected = loadTestResource('./expected/ABC234Result')
-        var result = server.plugins[pluginName].makeItSo(loadTestResource('./fixtures/ABC123Key'))
+        const expected = loadTestResource('./expected/ABC234Result')
+        const result = server.plugins[pluginName].makeItSo(loadTestResource('./fixtures/ABC123Key'))
         return expect(result).to.become(expected)
       })
     })
 
     describe('with extra params', function () {
-      var options = {
+      const options = {
         ids: 'IDS',
         identifier: 'IDENT',
         lang: 'LANG',
@@ -109,7 +109,7 @@ describe('pluginTapestry', function () {
       })
 
       it('should pass only certain params on to tapestry', function () {
-        var cleanOptions = {
+        const cleanOptions = {
           ids: 'IDS',
           identifier: 'IDENT',
           lang: 'LANG',
@@ -144,7 +144,7 @@ describe('pluginTapestry', function () {
 
     describe('end to end to check no code matches is handled correctly', function () {
       it('should resolve with an empty object', function () {
-        var expected = loadTestResource('./expected/noResult')
+        const expected = loadTestResource('./expected/noResult')
         return expect(server.plugins[pluginName].makeItSoComplex(loadTestResource('./fixtures/noCode'))).to.eventually.be.fulfilled.and.eventually.deep.equal(expected)
       })
     })
@@ -156,7 +156,7 @@ describe('pluginTapestry', function () {
       })
 
       it('should assign the fixture to the requested input `code`', function () {
-        var expected = loadTestResource('./expected/ABC123Arguments')
+        const expected = loadTestResource('./expected/ABC123Arguments')
         return server.plugins[pluginName].makeItSoComplex(loadTestResource('./fixtures/ABC123Key')).then(function () {
           expect(Tapestry.prototype.get.getCall(0).args[0]).to.deep.equal(expected)
         })
@@ -169,7 +169,7 @@ describe('pluginTapestry', function () {
       })
 
       it('should bind the expected content to the requested fixture input `code`', function () {
-        var expected = loadTestResource('./expected/ABC123Result')
+        const expected = loadTestResource('./expected/ABC123Result')
         return expect(server.plugins[pluginName].makeItSoComplex(loadTestResource('./fixtures/ABC123Key'))).to.eventually.be.fulfilled.and.eventually.deep.equal(expected)
       })
     })
@@ -180,7 +180,7 @@ describe('pluginTapestry', function () {
       })
 
       it('should not add a `code` property', function () {
-        var expected = loadTestResource('./expected/ABC123NoResult')
+        const expected = loadTestResource('./expected/ABC123NoResult')
         return expect(server.plugins[pluginName].makeItSoComplex(loadTestResource('./fixtures/ABC123Key'))).to.eventually.be.fulfilled.and.eventually.deep.equal(expected)
       })
     })
