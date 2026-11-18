@@ -52,3 +52,7 @@ Code is linted checked against the style guide with [make-up](https://github.com
 ## License
 Copyright (c) 2016 Shortbreaks
 Licensed under the MIT license.
+
+## What this repository does
+
+Hapi-style Node.js plugin for Holiday Extras Tapestry content lookup. It registers makeItSo and makeItSoComplex server plugin methods; no HTTP routes are evidenced.
